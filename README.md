@@ -14,7 +14,7 @@
 ```cd store_django```
 
 3. Установка библиотеки psycopg2 и django:
-```django```
+```pip install django```
 ```pip install psycopg2```
 
 4. Запуск проекта:
