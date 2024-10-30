@@ -16,7 +16,7 @@ class Products(models.Model):
         on_delete=models.CASCADE
     )
     product_img = models.ImageField(upload_to='product_imgs')
-    product_name = models.CharField(max_length=20)
+    product_name = models.CharField(max_length=30)
     product_description = models.TextField()
     price = models.IntegerField()
     quantity = models.IntegerField()
@@ -26,10 +26,6 @@ class Products(models.Model):
     )
     public = models.BooleanField(default=True)
     product_create_time = models.DateTimeField(auto_now_add=True)
-    
-    def get_absolute_url(self):
-        print(reverse(Products, args=[self.pk, ]))
-        return reverse(Products, args=[self.pk, ])
 
     def __str__(self):
         return self.product_name

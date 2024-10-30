@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, FormView, DetailView, CreateView
-from .models import Products, Reviews
+from .models import Products, Reviews, Category
 from order.models import Basket, Product_in_basket
 from users.models import Users, Status
 from django.views import View
 from .forms import AddReview, AddProduct
 from django.urls import reverse, reverse_lazy
+
+
+def categorys(request):
+    data = Category.objects.all()
+    
+    return render(request, 'products/categorys.html', {'data': data})
 
 
 class Main(View):
