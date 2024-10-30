@@ -22,13 +22,23 @@ class Products(models.Model):
     quantity = models.IntegerField()
     product_cat = models.ForeignKey(
         to=Category,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        db_index=True
     )
-    public = models.BooleanField(default=True)
+    public = models.BooleanField(
+        default=True,
+        db_index=True
+    )
     product_create_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.product_name
+    
+    class Meta:
+        ordering = ['-product_create_time']
+        indexes = [
+            models.Index(fields=['-product_create_time'])
+        ]
     
     
 class Reviews(models.Model):

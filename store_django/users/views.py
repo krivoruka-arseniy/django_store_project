@@ -75,18 +75,3 @@ class Profile(View):
             Products.objects.get(pk=button).delete()
         
         return render(request, 'users/profile.html', {'user': user, 'user_products': user_products})
-    
-    
-class UpdateProduct(UpdateView):
-    model = Products
-    fields = (
-        'product_name',
-        'product_description',
-        'price',
-        'quantity',
-        'product_cat',
-        'product_img',
-        'public'
-    )
-    template_name = 'users/update_product.html'
-    success_url = reverse_lazy('profile')
