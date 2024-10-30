@@ -10,7 +10,8 @@
 1. Клонируйте репозиторий:
 ```https://github.com/krivoruka-arseniy/django_store_project.git```
 
-2. Переход в директорию:
+2. Переход по дерикториям:
+```cd django_store_project```,
 ```cd store_django```
 
 3. Установка библиотеки psycopg2 и django:
