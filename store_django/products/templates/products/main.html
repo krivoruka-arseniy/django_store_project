@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'products/styles.css' %}">
+</head>
+<body>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <select name="product_cat" id="product_cat">
+                <option value="1">для спорта</option>
+                <option value="2">для дома</option>
+                <option value="3">одежда</option>
+                <option value="4">для школы</option>
+                <option value="5">игрушки</option>
+                <option value="6">медицинское</option>
+                <option value="all">все категории</option>
+            </select>
+            <button name="button" value="filter" type="submit">Отфильтровать</button>
+            <button type="button">
+                <a href="{% url 'users:register' %}">Регистрация</a>
+            </button>
+            <button type="button">
+                <a href="{% url 'users:profile' %}">Профиль</a>
+            </button>
+        </form>
+    </div>
+    {% for i in products %}
+    <br>
+    <div>
+        <img src="{{i.product_img.url}}" alt="где фото?">
+        <p>Назавание товара: {{i.product_name}}</p>
+    <!--<p>Опиcание товара: {{i.product_description}}</p>-->
+        <p>Цена товара: {{i.price}}</p>
+    <!--<p>Количество товара: {{i.quantity}}</p>-->
+        <p>Категория продукта: {{i.product_cat}}</p>
+        <p>Время создания продукта: {{i.product_create_time}}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button name="button" value="{{i.pk}}" type="submit">Подробнее</button>
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basket</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'products/styles.css' %}">
+</head>
+<body>
+    <div>
+        <h2>Корзина</h2>
+        {% for i in products_in_basket %}
+        <br>
+        <div>
+            <p>id: {{i.pk}}</p>
+            <p>Название: {{i.product.product_name}}</p>
+            <p>Цена: {{i.product.price}}</p>
+            <p>Количество: {{i.product.quantity}}</p>
+            <form method="post">
+                {% csrf_token %}
+                <button name="button" value="{{i.pk}}" type="submit">Убрать</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+<br>
+<div>
+    <p>Общая сумма корзины: {{basket.basket_sum}}</p>
+    <p>Общее количество товаров: {{basket.product_quantity}}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="button">
+            <a href="{% url 'order:buy' %}">Оплатить</a>
+        </button>
+    </form>
+</div>
+</body>
+</html>

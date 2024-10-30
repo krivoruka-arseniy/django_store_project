@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'products/styles.css' %}">
+</head>
+<body>
+    <button type="button">
+        <a href="add_review/">Добавить отзыв</a>
+    </button>
+    {% for i in reviews %}
+    <br>
+    <div>
+        <h3>{{i.owner_review}}</h3>
+        <p>{{i.review_name}}</p>
+        <p>{{i.review_content}}</p>
+        <p>{{i.review_create_time}}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button name="button" value="{{i.pk}}" type="submit">Удалить</button>
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>

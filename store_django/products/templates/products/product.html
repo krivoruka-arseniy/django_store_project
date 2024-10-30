@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'products/styles.css' %}">
+</head>
+<body>
+    <div>
+        <h2>Информация о продукте</h2>
+        <img src="{{product.product_img.url}}" alt="где фото?">
+        <h3>Продукт от: {{product.owner_user}}</h3>
+        <p>Название продукта: {{product.product_name}}</p>
+        <p>Описание продукта: {{product.product_description}}</p>
+        <p>Цена продукта: {{product.price}}</p>
+        <p>Количество продукта: {{product.quantity}}</p>
+        <p>Время когда продукт был выставлен: {{product.product_create_time}}</p>
+    </div>
+    <br>
+    <div>
+        <button type="button">
+            <a href="reviews/">Отзывы</a>
+        </button>
+        <form method="post">
+            {% csrf_token %}
+            <button name="button" value="hide" type="submit">Скрыть продукт</button>
+            <button name="button" value="in_basket" type="submit">В корзину</button>
+        </form>
+        {{status}}
+    </div>
+</body>
+</html>

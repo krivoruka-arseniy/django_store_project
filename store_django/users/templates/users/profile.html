@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'products/styles.css' %}">
+</head>
+<body>
+    <div>
+        <h2>Информация о пользователе:</h2>
+        <p>Ник: {{user.username}}</p>
+        <p>Электронная почта: {{user.email}}</p>
+        <p>статус пользователя: {{user.user_status}}</p>
+        <button type="button">
+            <a href="{% url 'order:basket' %}">Корзина пользователя</a>
+        </button>
+        {{status}}
+    </div>
+    <br>
+    <div>
+        <h2>Продукты пользователя:</h2>
+        <!--<button type="button">
+            <a href="{% url 'add_product' %}">Выставить продукт</a>
+        </button>-->
+        <form method="post">
+            {% csrf_token %}
+            <button name="button" value="add_product" type="submit">Добавить продукты</button>
+        </form>
+        {% for i in user_products %}
+        <br>
+        <div>
+            <img src="{{i.product_img.url}}" alt="где фото?">
+            <p>Назавание: {{i.product_name}}</p>
+            <p>Описание: {{i.product_description}}</p>
+            <p>Цена: {{i.price}}</p>
+            <p>Количество: {{i.quantity}}</p>
+            <p>Категория: {{i.product_cat}}</p>
+            {% if i.public == True %}
+            <p>Публичный</p>
+            {% else %}
+            <p>Не публичный</p>
+            {% endif %}
+            <p>Время выставления на продажу: {{i.product_create_time}}</p>
+            <form method="post">
+                {% csrf_token %}
+                <button name="button" value="{{i.pk}}" type="submit">Удалить продукт</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
