@@ -17,14 +17,21 @@
         <button type="button">
             <a href="{% url 'order:basket' %}">Корзина пользователя</a>
         </button>
+        {% if user.user_status.status_name == 'moder' %}
+        <button type="button">
+            <a href="{% url 'order:applications_for_moder' %}">Заявки на возврат</a>
+        </button>
+        {% else %}
+        <p>gvsdchgsdchgv</p>
         {{status}}
+        {% endif %}
     </div>
     <br>
     <div>
         <h2>Продукты пользователя:</h2>
-        <!--<button type="button">
+        <button type="button">
             <a href="{% url 'add_product' %}">Выставить продукт</a>
-        </button>-->
+        </button>
         <form method="post">
             {% csrf_token %}
             <button name="button" value="add_product" type="submit">Добавить продукты</button>
@@ -48,6 +55,9 @@
             <form method="post">
                 {% csrf_token %}
                 <button name="button" value="{{i.pk}}" type="submit">Удалить продукт</button>
+                <button type="button">
+                    <a href="{{ i.get_absolute_url }}">Обновить продукт</a>
+                </button>
             </form>
         </div>
         {% endfor %}

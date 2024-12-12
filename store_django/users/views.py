@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView, UpdateView, FormView
 from django.views import View
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse, reverse_lazy
-from .forms import RegisterUser, UpdateProductForm
+from django.urls import reverse_lazy
+from .forms import RegisterUser
 from .models import Users
 from products.models import Products
 from order.models import Basket
@@ -75,18 +74,3 @@ class Profile(View):
             Products.objects.get(pk=button).delete()
         
         return render(request, 'users/profile.html', {'user': user, 'user_products': user_products})
-    
-    
-class UpdateProduct(UpdateView):
-    model = Products
-    fields = (
-        'product_name',
-        'product_description',
-        'price',
-        'quantity',
-        'product_cat',
-        'product_img',
-        'public'
-    )
-    template_name = 'users/update_product.html'
-    success_url = reverse_lazy('profile')

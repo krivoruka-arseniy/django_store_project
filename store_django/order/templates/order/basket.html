@@ -10,6 +10,13 @@
 </head>
 <body>
     <div>
+        <button type="button">
+            <a href="{% url 'order:addication_balance' %}">Пополнение баланса</a>
+        </button>
+        <p>{{user.money_balance}}</p>
+    </div>
+    <br>
+    <div>
         <h2>Корзина</h2>
         {% for i in products_in_basket %}
         <br>

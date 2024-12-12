@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="{% static 'products/styles.css' %}">
 </head>
 <body>
-    <h2>hello, i am buy page</h2>
     <form method="post">
         {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">купить</button>
+        <button type="submit">Подтвердить</button>
     </form>
 </body>
 </html>

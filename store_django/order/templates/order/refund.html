@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update product</title>
+    <title>Refund</title>
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'products/styles.css' %}">
 </head>
 <body>
+    <p>{{refund.refund}}</p>
+    <p>{{refund.date_create}}</p>
     <form method="post">
         {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Обновить</button>
+        <button name="button" value="accept" type="submit">Одобрить</button>
+        <button name="button" value="not_accept" type="submit">Отклонить</button>
     </form>
 </body>
 </html>

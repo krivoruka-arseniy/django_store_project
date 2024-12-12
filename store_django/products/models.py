@@ -26,6 +26,9 @@ class Products(models.Model):
     )
     public = models.BooleanField(default=True)
     product_create_time = models.DateTimeField(auto_now_add=True)
+    
+    def get_absolute_url(self):
+        return reverse('update', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.product_name

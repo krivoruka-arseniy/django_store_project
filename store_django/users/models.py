@@ -15,6 +15,7 @@ class Users(AbstractUser):
         on_delete=models.CASCADE,
         default=1
     )
+    money_balance = models.IntegerField(default=0)
     
     def __str__(self):
         return self.username

@@ -7,5 +7,5 @@ urlpatterns = [
     path('product/reviews/', views.ReviewsPage.as_view(), name='reviews'),
     path('product/reviews/add_review/', views.AddReview.as_view()),
     path('add_product/', views.AddProduct.as_view(), name='add_product'),
-    path('categorys/', views.categorys),
+    path('update/<int:pk>/', views.UpdateProduct.as_view(), name='update')
 ]

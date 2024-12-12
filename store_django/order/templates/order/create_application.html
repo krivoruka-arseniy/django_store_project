@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create application</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'products/styles.css' %}">
+</head>
+<body>
+    <div>
+        <h3>Правила написания заявления</h3>
+        <h3>Если ваше заявление не будет соответствовать правилам написания то модератор имеет полное право отклонить ваше заявление</h3>
+        <p>Ваше заявление должно содержать дату покупки, какой продукт вы хотите вернуть(название) и почему вы хотите вернуть товар</p>
+    </div>
+    <br>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</body>
+</html>

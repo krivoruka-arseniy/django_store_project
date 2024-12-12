@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'products/styles.css' %}">
+</head>
+<body>
+    <div>
+        <button type="button">
+            <a href="{% url 'order:create_application' %}">Создать заявку</a>
+        </button>
+    </div>
+    {% for i in applications %}
+    <br>
+    <div>
+        <p>{{i.content}}</p>
+        <p>{{i.date_create}}</p>
+        {% if i.accept == True %}
+        <p>Заявка одобрена</p>
+        {% elif i.accept == False %}
+        <p>Заявка отклонена</p>
+        {% else %}
+        <p>Не прочитана</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <button name="button" value="{{i.pk}}" type="submit">Удалить</button>
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>
