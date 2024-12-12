@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
+<<<<<<< HEAD
 from django.views.generic import FormView, CreateView, UpdateView
 from .models import Products, Reviews
+=======
+from django.views.generic import ListView, FormView, DetailView, CreateView, UpdateView
+from .models import Products, Reviews, Category
+>>>>>>> 29fdf43b36165b945ad51d0b485ad2370d31a970
 from order.models import Basket, Product_in_basket
 from users.models import Users
 from django.views import View
@@ -145,3 +150,18 @@ class AddProduct(CreateView):
         w = form.save(commit=False)
         w.owner_user_id = self.request.user.pk
         return super().form_valid(form)
+    
+    
+class UpdateProduct(UpdateView):
+    model = Products
+    fields = (
+        'product_name',
+        'product_description',
+        'price',
+        'quantity',
+        'product_cat',
+        'product_img',
+        'public'
+    )
+    template_name = 'products/update_product.html'
+    success_url = reverse_lazy('home')
